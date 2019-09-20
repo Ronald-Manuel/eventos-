@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservacionEditDlg" widgetVar="ReservacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReservacionTitle}">
+            <h:form id="ReservacionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reservacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_idreservacion}" for="idreservacion" />
+                        <p:inputText id="idreservacion" value="#{reservacionController.selected.idreservacion}" title="#{bundle.EditReservacionTitle_idreservacion}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_idreservacion}"/>
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_fechainicial}" for="fechainicial" />
+                        <p:calendar id="fechainicial" pattern="MM/dd/yyyy HH:mm:ss" value="#{reservacionController.selected.fechainicial}" title="#{bundle.EditReservacionTitle_fechainicial}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_fechainicial}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_fechafinal}" for="fechafinal" />
+                        <p:calendar id="fechafinal" pattern="MM/dd/yyyy HH:mm:ss" value="#{reservacionController.selected.fechafinal}" title="#{bundle.EditReservacionTitle_fechafinal}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_fechafinal}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_idcliente}" for="idcliente" />
+                        <p:selectOneMenu id="idcliente" value="#{reservacionController.selected.idcliente}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_idcliente}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="idclienteItem"
+                                           itemValue="#{idclienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_idmotivoreservacion}" for="idmotivoreservacion" />
+                        <p:selectOneMenu id="idmotivoreservacion" value="#{reservacionController.selected.idmotivoreservacion}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_idmotivoreservacion}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{motivoreservacionController.itemsAvailableSelectOne}"
+                                           var="idmotivoreservacionItem"
+                                           itemValue="#{idmotivoreservacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_idsalon}" for="idsalon" />
+                        <p:selectOneMenu id="idsalon" value="#{reservacionController.selected.idsalon}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_idsalon}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{salonController.itemsAvailableSelectOne}"
+                                           var="idsalonItem"
+                                           itemValue="#{idsalonItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditReservacionLabel_idsucursal}" for="idsucursal" />
+                        <p:selectOneMenu id="idsucursal" value="#{reservacionController.selected.idsucursal}" required="true" requiredMessage="#{bundle.EditReservacionRequiredMessage_idsucursal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"
+                                           var="idsucursalItem"
+                                           itemValue="#{idsucursalItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reservacionController.update}" value="#{bundle.Save}" update="display,:ReservacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReservacionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReservacionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

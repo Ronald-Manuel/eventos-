@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SalonCreateDlg" widgetVar="SalonCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSalonTitle}">
+            <h:form id="SalonCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{salonController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSalonLabel_idsalon}" for="idsalon" />
+                        <p:inputText id="idsalon" value="#{salonController.selected.idsalon}" title="#{bundle.CreateSalonTitle_idsalon}" required="true" requiredMessage="#{bundle.CreateSalonRequiredMessage_idsalon}"/>
+                        <p:outputLabel value="#{bundle.CreateSalonLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{salonController.selected.descripcion}" title="#{bundle.CreateSalonTitle_descripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{salonController.create}" value="#{bundle.Save}" update="display,:SalonListForm:datalist,:growl" oncomplete="handleSubmit(args,'SalonCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SalonCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

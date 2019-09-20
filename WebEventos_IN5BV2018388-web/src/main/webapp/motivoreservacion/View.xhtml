@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotivoreservacionViewDlg" widgetVar="MotivoreservacionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMotivoreservacionTitle}">
+            <h:form id="MotivoreservacionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motivoreservacionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMotivoreservacionLabel_idmotivoreservacion}"/>
+                        <h:outputText value="#{motivoreservacionController.selected.idmotivoreservacion}" title="#{bundle.ViewMotivoreservacionTitle_idmotivoreservacion}"/>
+                        <h:outputText value="#{bundle.ViewMotivoreservacionLabel_reuniontrabajo}"/>
+                        <h:outputText value="#{motivoreservacionController.selected.reuniontrabajo}" title="#{bundle.ViewMotivoreservacionTitle_reuniontrabajo}"/>
+                        <h:outputText value="#{bundle.ViewMotivoreservacionLabel_casamiento}"/>
+                        <h:outputText value="#{motivoreservacionController.selected.casamiento}" title="#{bundle.ViewMotivoreservacionTitle_casamiento}"/>
+                        <h:outputText value="#{bundle.ViewMotivoreservacionLabel_cumpleanios}"/>
+                        <h:outputText value="#{motivoreservacionController.selected.cumpleanios}" title="#{bundle.ViewMotivoreservacionTitle_cumpleanios}"/>
+                        <h:outputText value="#{bundle.ViewMotivoreservacionLabel_otro}"/>
+                        <h:outputText value="#{motivoreservacionController.selected.otro}" title="#{bundle.ViewMotivoreservacionTitle_otro}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MotivoreservacionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

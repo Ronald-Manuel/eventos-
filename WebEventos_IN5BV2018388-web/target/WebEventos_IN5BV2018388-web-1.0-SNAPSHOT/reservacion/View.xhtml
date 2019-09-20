@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservacionViewDlg" widgetVar="ReservacionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewReservacionTitle}">
+            <h:form id="ReservacionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reservacionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewReservacionLabel_idreservacion}"/>
+                        <h:outputText value="#{reservacionController.selected.idreservacion}" title="#{bundle.ViewReservacionTitle_idreservacion}"/>
+                        <h:outputText value="#{bundle.ViewReservacionLabel_fechainicial}"/>
+                        <h:outputText value="#{reservacionController.selected.fechainicial}" title="#{bundle.ViewReservacionTitle_fechainicial}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewReservacionLabel_fechafinal}"/>
+                        <h:outputText value="#{reservacionController.selected.fechafinal}" title="#{bundle.ViewReservacionTitle_fechafinal}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewReservacionLabel_idcliente}"/>
+                        <h:outputText value="#{reservacionController.selected.idcliente}" title="#{bundle.ViewReservacionTitle_idcliente}"/>
+                        <h:outputText value="#{bundle.ViewReservacionLabel_idmotivoreservacion}"/>
+                        <h:outputText value="#{reservacionController.selected.idmotivoreservacion}" title="#{bundle.ViewReservacionTitle_idmotivoreservacion}"/>
+                        <h:outputText value="#{bundle.ViewReservacionLabel_idsalon}"/>
+                        <h:outputText value="#{reservacionController.selected.idsalon}" title="#{bundle.ViewReservacionTitle_idsalon}"/>
+                        <h:outputText value="#{bundle.ViewReservacionLabel_idsucursal}"/>
+                        <h:outputText value="#{reservacionController.selected.idsucursal}" title="#{bundle.ViewReservacionTitle_idsucursal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ReservacionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

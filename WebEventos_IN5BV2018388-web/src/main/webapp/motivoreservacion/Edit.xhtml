@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotivoreservacionEditDlg" widgetVar="MotivoreservacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMotivoreservacionTitle}">
+            <h:form id="MotivoreservacionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motivoreservacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMotivoreservacionLabel_idmotivoreservacion}" for="idmotivoreservacion" />
+                        <p:inputText id="idmotivoreservacion" value="#{motivoreservacionController.selected.idmotivoreservacion}" title="#{bundle.EditMotivoreservacionTitle_idmotivoreservacion}" required="true" requiredMessage="#{bundle.EditMotivoreservacionRequiredMessage_idmotivoreservacion}"/>
+                        <p:outputLabel value="#{bundle.EditMotivoreservacionLabel_reuniontrabajo}" for="reuniontrabajo" />
+                        <p:inputText id="reuniontrabajo" value="#{motivoreservacionController.selected.reuniontrabajo}" title="#{bundle.EditMotivoreservacionTitle_reuniontrabajo}" />
+                        <p:outputLabel value="#{bundle.EditMotivoreservacionLabel_casamiento}" for="casamiento" />
+                        <p:inputText id="casamiento" value="#{motivoreservacionController.selected.casamiento}" title="#{bundle.EditMotivoreservacionTitle_casamiento}" />
+                        <p:outputLabel value="#{bundle.EditMotivoreservacionLabel_cumpleanios}" for="cumpleanios" />
+                        <p:inputText id="cumpleanios" value="#{motivoreservacionController.selected.cumpleanios}" title="#{bundle.EditMotivoreservacionTitle_cumpleanios}" />
+                        <p:outputLabel value="#{bundle.EditMotivoreservacionLabel_otro}" for="otro" />
+                        <p:inputText id="otro" value="#{motivoreservacionController.selected.otro}" title="#{bundle.EditMotivoreservacionTitle_otro}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{motivoreservacionController.update}" value="#{bundle.Save}" update="display,:MotivoreservacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MotivoreservacionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotivoreservacionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
